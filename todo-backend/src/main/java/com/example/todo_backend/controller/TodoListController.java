@@ -19,7 +19,7 @@ public class TodoListController {
     @Autowired
     private TodoListService todoListService;
 
-    // 1. リスト一覧取得API (GET /lists)
+    // リスト一覧取得API
     @GetMapping
     public ResponseEntity<List<TodoList>> getAllLists() {
         try {
@@ -30,7 +30,7 @@ public class TodoListController {
         }
     }
 
-    // 2. リスト登録API (POST /lists)
+    // リスト登録API
     @PostMapping
     public ResponseEntity<?> createList(@RequestBody TodoList todoList) {
         try {
@@ -43,7 +43,7 @@ public class TodoListController {
         }
     }
 
-    // リスト削除API (DELETE /lists/{id})
+    // リスト削除API
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteList(@PathVariable("id") Long id) {
         try {

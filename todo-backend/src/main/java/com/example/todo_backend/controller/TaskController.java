@@ -18,7 +18,7 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    // 4. タスク一覧取得API (GET /lists/{listId}/tasks)
+    // タスク一覧取得API
     @GetMapping("/lists/{listId}/tasks")
     public ResponseEntity<?> getTasksByListId(@PathVariable("listId") Long listId) {
         try {
@@ -29,7 +29,7 @@ public class TaskController {
         }
     }
 
-    // 5. タスク登録API (POST /lists/{listId}/tasks)
+    // タスク登録API
     @PostMapping("/lists/{listId}/tasks")
     public ResponseEntity<?> createTask(@PathVariable("listId") Long listId, @RequestBody Task task) {
         try {
@@ -44,14 +44,14 @@ public class TaskController {
         }
     }
 
-    // 6. タスク削除API (DELETE /tasks/{id})
+    // タスク削除API
     @DeleteMapping("/tasks/{id}")
     public ResponseEntity<?> deleteTask(@PathVariable("id") Long id) {
         try {
             taskService.deleteTask(id);
             return ResponseEntity.ok(Map.of("message", "削除が成功しました。"));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage())); // 404 Not Found
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", e.getMessage()));
         }
     }
 }
